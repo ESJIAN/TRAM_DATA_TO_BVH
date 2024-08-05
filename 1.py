@@ -6,8 +6,8 @@ numpy版本<=2.x
 """
 import torch
 
-rotate=torch.load("j3d.pth", weights_only=True)
-pose=torch.load("pose.pth", weights_only=True)
+rotate=torch.load("j3d.pth", weights_only=True) # 读取j3d.pth文件 （）
+pose=torch.load("pose.pth", weights_only=True)  # 读取pose.pth文件（笛卡尔坐标系节点位置的tensor矩阵数据）
 
 
 bvh_header = """
@@ -131,7 +131,7 @@ bvh_header = """
 
 def write_pose(pose, sample):
 
-    for i in range(0, pose.shape[1]):
+    for i in range(0, pose.shape[1]):      # shape方法遍历tensor矩阵纵数,行数，列数
         temp_pose=pose[0,i,0:1:1,]         # 获取到了一个二维的tensor变量
         list_temp_pose=temp_pose.tolist()  # 转换成为了一个二维列表
         character=""
@@ -166,21 +166,34 @@ global global_sample
 if __name__ == "__main__":
     # 示例调用函数将数据写入 BVH 文件
 
-    # 获取了起始位姿数据
+    # 写入起始位姿数据
     global_sample = write_pose(pose, bvh_header)
-    # 获取了帧数
+    # 写入帧数
     global_sample = global_sample.replace("Frames: {num_frames}", f"Frames: {rotate.shape[0]}")
-    # 获取了旋转数据
+    # 写入帧时间
+    global_sample = global_sample.replace("Frame Time: {frame_time}", f"Frame Time: {1/rotate.shape[0]}")
+    # 写入旋转数据
     global_sample = global_sample+write_rotate(rotate, global_sample)
+    try:
+        bv_fileh = open("simple.bvh", 'w')
+        bv_fileh.write(global_sample)
+        bv_fileh.close()
+    except(Exception):
+        print("BVH文件写入失败")
 
-    txt=open("simple.bvh", 'w')
-    txt.write(global_sample)
-    txt.close()
 
 
 
+"""已完成目标一"""
 
 # 标准的bvh文件OFFSET如果被索引基本上都一样，所有的OFFSET都会被同时索引，我们可以事先给OFFSET前添加索引标志，在调用replace方法的时候替换为原样
 # 文件内数字索引最好以01，02这样的方式定位索引名字，要不然以1....11会发现第一个和第11个字符会被索引订正两次
 # temp_sample=sample.replace(index_string,"OFFSET"+" "+character)该内存变量无法完成增量修改，每修改一次覆盖原有内容
 # 改成sample=sample.replace(index_string,"OFFSET"+" "+character) 即可
+
+# 文件格式转化思路：分析两者文件的异同，将二者的数据结构进行对比，找到相同点，将相同点进行替换，将不同点进行添加，最后将替换好的bvh数据流写入文件
+
+"""目标二"""
+
+# 困难: 读取的bvh数据流错误
+# 目的: 找到正确的bvh数据流对应的tensor张量矩阵
