@@ -2,7 +2,7 @@
 运行环境:
 torch版本为2.4.0
 python版本为3.10
-numpy版本<=2.x
+numpy版本1.23.5
 scipu版本1.14.0
 """
 import torch
