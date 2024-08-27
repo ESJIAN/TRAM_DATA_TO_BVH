@@ -97,13 +97,13 @@ def transform(path):
 
 
 """
-测试代码
+测试代码,预览转化后的旋转矩阵输出欧拉偏转角结果
 """
 
 if __name__ == '__main__':
-    path = r'../Sourcefile/vimo_track_0.npy'
+    path = r'../Sourcefile/Npy_file/vimo_track_0.npy'
     results = transform(path)
-    with open('../Outputfiles/transformed_rotate_data.txt', 'w') as f:
+    with open('../Outputfiles/Out_privew_file/transformed_rotate_data.txt', 'w') as f:
         f.write(results)
 
 
