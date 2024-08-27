@@ -22,17 +22,17 @@ def preview(data):
     data = data.item()
     print(type(data))
     torch.set_printoptions(threshold=float('inf'))
-    with open('../Sourcefile/DetaiData_in_npy/pred_cam.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/pred_cam.txt', 'w') as f:
         f.write(str(data['pred_cam']))
-    with open('../Sourcefile/DetaiData_in_npy/pred_pose.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/pred_pose.txt', 'w') as f:
         f.write(str(data['pred_pose']))
-    with open('../Sourcefile/DetaiData_in_npy/pred_shape.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/pred_shape.txt', 'w') as f:
         f.write(str(data['pred_shape']))
-    with open('../Sourcefile/DetaiData_in_npy/pred_rotmat.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/pred_rotmat.txt', 'w') as f:
         f.write(str(data['pred_rotmat']))
-    with open('../Sourcefile/DetaiData_in_npy/pred_trans.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/pred_trans.txt', 'w') as f:
         f.write(str(data['pred_trans']))
-    with open('../Sourcefile/DetaiData_in_npy/frame.txt', 'w') as f:
+    with open('../Sourcefile/SubData_in_track_npy/frame.txt', 'w') as f:
         f.write(str(data['frame']))
     print("OK")
 
