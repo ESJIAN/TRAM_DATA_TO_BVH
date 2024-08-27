@@ -6,9 +6,9 @@ numpy版本1.23.5
 scipu版本1.14.0
 """
 import torch
-import rotate_matrix2Euler_angle
-from smplpose2bvhpose import smplpose_to_bvhpose
-from writepose import  write_pose
+from Program.SubFuction_Program import rotate_matrix2Euler_angle
+from Program.SubFuction_Program.smplpose2bvhpose import smplpose_to_bvhpose
+from Program.SubFuction_Program.writepose import  write_pose
 
 origin_pose = torch.load("../Sourcefile/Pth_file/j3d.pth", weights_only=True)  # 读取节点坐标文件 （笛卡尔坐标系节点位置的tensor矩阵数据）
 rotate = torch.load("../Sourcefile/Pth_file/pose.pth", weights_only=True)      # 读取旋转文件 （笛卡尔坐标系节点位置的每个节点欧拉相对偏转角）

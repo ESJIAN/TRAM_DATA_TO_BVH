@@ -1,3 +1,9 @@
+"""
+Python 环境3.10
+
+"""
+
+
 import math
 import numpy as np
 
@@ -101,9 +107,9 @@ def transform(path):
 """
 
 if __name__ == '__main__':
-    path = r'../Sourcefile/Npy_file/vimo_track_0.npy'
+    path = r'../../Sourcefile/Npy_file/vimo_track_0.npy'
     results = transform(path)
-    with open('../Outputfiles/Out_privew_file/transformed_rotate_data.txt', 'w') as f:
+    with open('../../Outputfiles/Out_privew_file/transformed_rotate_data.txt', 'w') as f:
         f.write(results)
 
 

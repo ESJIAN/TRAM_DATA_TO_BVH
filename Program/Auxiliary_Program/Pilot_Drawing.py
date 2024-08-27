@@ -1,5 +1,6 @@
 """
-环境python3.6
+环境python3.10
+
 """
 import matplotlib.pyplot as plt
 import numpy as np
